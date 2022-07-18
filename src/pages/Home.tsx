@@ -13,4 +13,4 @@ const Home = () => {
 
 export default Home;
 
-// https://kingnordee.github.io/ksu-ecommerce/
+// https://kingnordee.github.io/ksu-ecommerce/home
