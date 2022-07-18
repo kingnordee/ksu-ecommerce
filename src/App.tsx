@@ -13,13 +13,13 @@ const App = () => {
                 <NavBar/>
                 <div className="components">
                     <Routes>
-                        <Route path='/home' element={<Home/>}/>
+                        <Route path='/' element={<Home/>}/>
                         <Route path='/sign-in' element={<Login/>}/>
                         <Route path='/sign-up' element={<SignUp/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
-            <footer><h5>&copy; Team 1, Software Architecture, Summer 2021</h5></footer>
+            <footer><h5>&copy; Team 1, Software Architecture, Summer 2022</h5></footer>
         </div>
     );
 };

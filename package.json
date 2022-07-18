@@ -1,6 +1,6 @@
 {
   "name": "team-ecommerce-app",
-  "homepage": "http://kingnordee.github.io/ksu-ecommerce/home",
+  "homepage": "http://kingnordee.github.io/ksu-ecommerce/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
