@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ksu-ecommerce/static/css/main.efdedb22.css",
-    "main.js": "/ksu-ecommerce/static/js/main.547e48ba.js",
+    "main.js": "/ksu-ecommerce/static/js/main.9c484ac8.js",
     "index.html": "/ksu-ecommerce/index.html",
     "main.efdedb22.css.map": "/ksu-ecommerce/static/css/main.efdedb22.css.map",
-    "main.547e48ba.js.map": "/ksu-ecommerce/static/js/main.547e48ba.js.map"
+    "main.9c484ac8.js.map": "/ksu-ecommerce/static/js/main.9c484ac8.js.map"
   },
   "entrypoints": [
     "static/css/main.efdedb22.css",
-    "static/js/main.547e48ba.js"
+    "static/js/main.9c484ac8.js"
   ]
 }
