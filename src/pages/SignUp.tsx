@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {NavLink} from "react-router-dom";
 
 const SignUp = () => {
 
@@ -55,6 +56,12 @@ const SignUp = () => {
                 </div>
 
                 <button type="submit" onClick={handleSubmit}>Sign Up</button>
+                <p className="loginRedirect">
+                    <i>Already a user?</i>
+                    <span>
+                         <NavLink to="/sign-in"> Sign in here</NavLink>
+                    </span>
+                </p>
             </form>
         </div>
     </div>
