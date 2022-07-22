@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import {getUserSetState, IUser} from "../common/common";
-import {useSelector} from "react-redux";
+import {getCartIdList, getUserSetState, IUser} from "../common/common";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../index";
+import {TYPE} from "../common/reducers";
 
 const NavBar = () => {
 
-    const [state, setState] = useState<IUser|null>(null);
+    const [user, setUser] = useState<IUser|null>(null);
+    const [cartItemCount, setCartItemCount] = useState(0);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const selectUser = useSelector((state:RootState) => state.storeData.currentUser)
+    const storeState = useSelector((state: RootState) => state)
 
     useEffect(() => {
-        getUserSetState(setState)
-
-    }, []);
+        const cartList = getCartIdList();
+        if(cartList !== null) setCartItemCount(cartList.length);
+        getUserSetState(setUser)
+    }, [storeState]);
 
     const checkActive = (isActive: boolean) => {
         return (isActive ? 'isActive' : '')
@@ -22,9 +26,13 @@ const NavBar = () => {
 
     const signOut =  () => {
         localStorage.clear();
-        setState(null);
+        setUser(null);
+        setCartItemCount(0);
+        dispatch({type: TYPE.SetUser, payload: false})
+        dispatch({type: TYPE.SetCartItem, payload: false})
         navigate("/");
     }
+
     return (
         <div className="navBar">
             <div className="navInnerWrapper">
@@ -32,11 +40,14 @@ const NavBar = () => {
                     <NavLink className={({ isActive }) => checkActive(isActive)}  to="/">Home</NavLink>
                 </div>
                 <div className="navRight">
-                    {!state && <NavLink className={({isActive}) => checkActive(isActive)} to="/sign-in">Sign In</NavLink>}
-                    {!state && <NavLink className={({isActive}) => checkActive(isActive)} to="/sign-up">Sign Up</NavLink>}
-                    {state && <p>Welcome, {state.firstName.trim().length > 0 ? state.firstName.trim() : state.email.trim()}!</p>}
-                    {state && <p>View Cart</p>}
-                    {state && <p style={{cursor:"pointer"}} onClick={signOut}>Sign Out</p>}
+                    {!user && <NavLink className={({isActive}) => checkActive(isActive)} to="/sign-in">Sign In</NavLink>}
+                    {!user && <NavLink className={({isActive}) => checkActive(isActive)} to="/sign-up">Sign Up</NavLink>}
+                    {user && <p>Welcome, {user.firstName.trim().length > 0 ? user.firstName.trim() : user.email.trim()}!</p>}
+                    {user && <p className="cart">
+                        {cartItemCount > 0 && <span className="cartCount">{cartItemCount}</span>}
+                        <NavLink className={({isActive}) => checkActive(isActive)} to="/shopping-cart">Cart</NavLink>
+                    </p>}
+                    {user && <p style={{cursor:"pointer"}} onClick={signOut}>Sign Out</p>}
                 </div>
             </div>
         </div>

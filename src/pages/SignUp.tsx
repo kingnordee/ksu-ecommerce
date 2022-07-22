@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import {IUser} from "../common/common";
+import {IUser, saveToLocalStorage, StorageKeys} from "../common/common";
 import {TYPE} from "../common/reducers";
 import {useDispatch} from "react-redux";
 
@@ -20,8 +20,8 @@ const SignUp = () => {
             email: state.email,
             password: state.password
         }
-        // saveToLocalStorage("user", JSON.stringify(user));
-        dispatch({type: TYPE.SetUser, payload: user})
+        saveToLocalStorage(StorageKeys.UserKey, JSON.stringify(user));
+        dispatch({type: TYPE.SetUser, payload: true})
         navigate("/")
     }
 

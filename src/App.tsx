@@ -5,6 +5,8 @@ import Home from "./pages/Home"
 import './styles/_App.scss';
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import ShoppingCart from "./pages/ShoppingCart";
+import Payment from "./pages/Payment";
 
 const App = () => {
     return (
@@ -16,6 +18,8 @@ const App = () => {
                         <Route path='/' element={<Home/>}/>
                         <Route path='/sign-in' element={<Login/>}/>
                         <Route path='/sign-up' element={<SignUp/>}/>
+                        <Route path='/shopping-cart' element={<ShoppingCart/>}/>
+                        <Route path='/payment' element={<Payment/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>

@@ -1,24 +1,32 @@
-import React, {ReducerState, useEffect, useState} from 'react';
-import { useDispatch, useSelector} from 'react-redux'
-import {getUserSetState, IProduct, IUser} from "../common/common";
-import {StateType} from "../common/reducers";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
+import {getCartIdList, getUserSetState, IProduct, IUser, saveToLocalStorage, StorageKeys} from "../common/common";
 import {RootState} from "../index";
+import {TYPE} from "../common/reducers";
 
 const Product = (props: IProduct) => {
 
     const [user, setUser] = useState<IUser|null>(null);
-    const selectUser = useSelector((state:RootState) => state.storeData.currentUser)
+    const selectStoreData = useSelector((state:RootState) => state.appData);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(selectUser);
-    }, [user]);
+        getUserSetState(setUser)
+    }, [selectStoreData]);
+    
+    const addToCart = () => {
+      const cartFromStorage: number[] | null = getCartIdList();
+      if(cartFromStorage == null)  saveToLocalStorage(StorageKeys.CartKey, JSON.stringify([props.id]));
+      else saveToLocalStorage(StorageKeys.CartKey, JSON.stringify([...cartFromStorage, props.id]));
+      dispatch({type: TYPE.SetCartItem, payload: true})
+    }
 
     return (
         <div className="product">
             <p className="name">{props.name}</p>
             <img src={props.imageUrl} alt=""/>
-            <p className="price">${props.price}</p>
-            {user && <button className="addToCart">Add to Cart</button>}
+            <p className="price">${props.price.toFixed(2)}</p>
+            {user && <button className="addToCart" onClick={addToCart}>Add to Cart</button>}
         </div>
     );
 };

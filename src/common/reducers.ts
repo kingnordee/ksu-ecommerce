@@ -1,25 +1,22 @@
-import {ICart, IProduct, IUser} from "./common";
 import {combineReducers} from "redux";
 
 export type StateType = {
-    currentUser: IUser | null,
-    cartArray: ICart[]
+    userAction: boolean,
+    cartAction: boolean
 }
 const initialState: StateType = {
-    currentUser: null,
-    cartArray: []
+    userAction: false,
+    cartAction: false
 }
-
-export type PAYLOAD = IUser |  IProduct;
 
 export enum TYPE {
     SetUser = "SetUser",
-    AddItem = "AddItem"
+    SetCartItem = "SetCartItem"
 }
 
 export interface IAction {
     type: string,
-    payload: PAYLOAD
+    payload: boolean
 }
 
 export const reducer = (
@@ -29,13 +26,13 @@ export const reducer = (
     switch (action.type) {
         case TYPE.SetUser :
             return {...state, currentUser: action.payload} as StateType;
-        case TYPE.AddItem:
-            return {...state, cartArray: [...state.cartArray, action.payload]} as StateType;
+        case TYPE.SetCartItem:
+            return {...state, cartAction: action.payload} as StateType;
         default:
             return state
     }
 }
 
 export const rootReducer = combineReducers({
-    storeData: reducer
+    appData: reducer
 });
