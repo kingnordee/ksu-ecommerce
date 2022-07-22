@@ -1,16 +1,28 @@
 import React, {useState} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {IUser} from "../common/common";
+import {TYPE} from "../common/reducers";
+import {useDispatch} from "react-redux";
 
 const SignUp = () => {
-
-
+    const dispatch = useDispatch();
 
     const [ state, setState ] = useState({
         email:"", password:"", firstName:"",  lastName:""
     })
 
-    const handleSubmit = async () => {
+    const navigate = useNavigate();
 
+    const handleSubmit = () => {
+        const user: IUser = {
+            firstName: state.firstName,
+            lastName: state.lastName,
+            email: state.email,
+            password: state.password
+        }
+        // saveToLocalStorage("user", JSON.stringify(user));
+        dispatch({type: TYPE.SetUser, payload: user})
+        navigate("/")
     }
 
     return <div className="login">

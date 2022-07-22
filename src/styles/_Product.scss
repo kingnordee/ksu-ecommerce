@@ -1,0 +1,26 @@
+.product{
+  *{
+    border-radius: 5px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  height: 300px;
+  width: 250px;
+  margin: 10px;
+  color: ghostwhite;
+  background: rgba(53, 129, 255, 0.1);
+  border-radius: 5px;
+  padding: 20px 5px 5px 5px;
+
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(53, 129, 255);
+    padding: 10px;
+    cursor: pointer;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyComponent = () => {
+const StateManager = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const MyComponent = () => {
     );
 };
 
-export default MyComponent;
+export default StateManager;

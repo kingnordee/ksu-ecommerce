@@ -1,15 +1,28 @@
-import { useEffect, useState } from "react";
-// import { useHistory } from 'react-router-dom'
+import { useState } from "react";
+import {saveToLocalStorage, IUser} from "../common/common";
+import { useNavigate } from 'react-router-dom'
+import {useDispatch} from "react-redux";
+import {TYPE} from "../common/reducers";
 
 const Login = () => {
-
+    const dispatch = useDispatch()
 
     const [ state, setState ] = useState({
         email:"", password:""
     })
 
-    const handleSubmit = async () => {
+    const navigate = useNavigate();
 
+    const handleSubmit = () => {
+        const user: IUser = {
+            firstName: "",
+            lastName: "",
+            email: state.email,
+            password: state.password
+        }
+        // saveToLocalStorage("user", JSON.stringify(user));
+        dispatch({type: TYPE.SetUser, payload: user})
+        navigate("/")
     }
 
     return (
