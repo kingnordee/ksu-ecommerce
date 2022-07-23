@@ -21,7 +21,7 @@ const ShoppingCart = () => {
         setProductList(listedProducts);
         setCartTotal(sumPrice)
 
-    }, [productList, cartTotal])
+    }, [])
 
     return (
         <div className="shoppingCart">

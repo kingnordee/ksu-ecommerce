@@ -3,7 +3,6 @@ import Product from "./Product";
 import {products} from "../common/common";
 
 const Home = () => {
-
     return (
         <div className="home">
             {products.map((product, idx) => {

@@ -6,7 +6,6 @@ import {RootState} from "../index";
 import {TYPE} from "../common/reducers";
 
 const NavBar = () => {
-
     const [user, setUser] = useState<IUser|null>(null);
     const [cartItemCount, setCartItemCount] = useState(0);
     const navigate = useNavigate();
@@ -17,6 +16,7 @@ const NavBar = () => {
     useEffect(() => {
         const cartList = getCartIdList();
         if(cartList !== null) setCartItemCount(cartList.length);
+        else setCartItemCount(0);
         getUserSetState(setUser)
     }, [storeState]);
 
@@ -37,7 +37,7 @@ const NavBar = () => {
         <div className="navBar">
             <div className="navInnerWrapper">
                 <div className="navLeft">
-                    <NavLink className={({ isActive }) => checkActive(isActive)}  to="/">Home</NavLink>
+                    <NavLink className={({ isActive }) => checkActive(isActive)}  to="/">Products</NavLink>
                 </div>
                 <div className="navRight">
                     {!user && <NavLink className={({isActive}) => checkActive(isActive)} to="/sign-in">Sign In</NavLink>}
