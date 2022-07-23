@@ -14,8 +14,8 @@ const NavBar = () => {
     const storeState = useSelector((state: RootState) => state)
 
     useEffect(() => {
-        const cartList = getCartIdList();
-        if(cartList !== null) setCartItemCount(cartList.length);
+        const cartList = new Set(getCartIdList());
+        if(cartList !== null) setCartItemCount(cartList.size);
         else setCartItemCount(0);
         getUserSetState(setUser)
     }, [storeState]);
