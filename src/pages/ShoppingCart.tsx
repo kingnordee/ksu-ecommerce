@@ -52,8 +52,8 @@ const ShoppingCart = () => {
             {productList.map((product: IProduct, idx: number) => {
                 return <div className="cartItem" key={idx}>
                     <p className="itemName">{product.name}</p>
-                    <p className="itemBreakDown">Qty: {product.qty} * Price: {product.price.toFixed(2)}</p>
-                    <p className="itemPrice">Item Total: ${(product.price * product.qty).toFixed(2)}</p>
+                    <p className="itemBreakDown"> Qty: {product.qty} * Price: {product.price.toFixed(2)} </p>
+                    <p className="itemPrice"> Item Total: ${(product.price * product.qty).toFixed(2)}</p>
                 </div>
             })}
 
