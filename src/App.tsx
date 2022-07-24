@@ -26,7 +26,7 @@ const App = () => {
                 </div>
             </BrowserRouter>
             <footer>
-                <h5>&copy; Team 1, Software Architecture, Summer 2022</h5>
+                <h5>&copy; Team 1, SWE 6653:Software Architecture, Summer 2022</h5>
                 <p><i>Stock image credit: https://unsplash.com/s/photos/product</i></p>
             </footer>
         </div>
