@@ -49,16 +49,48 @@ const ShoppingCart = () => {
 
             {cartTotal < 1 && <p className="cartEmpty">Your Shopping Cart is empty!</p>}
 
-            {productList.map((product: IProduct, idx: number) => {
-                return <div className="cartItem" key={idx}>
-                    <p className="itemName">{product.name}</p>
-                    <p className="itemBreakDown"> Qty: {product.qty} * Price: {product.price.toFixed(2)} </p>
-                    <p className="itemPrice"> Item Total: ${(product.price * product.qty).toFixed(2)}</p>
-                </div>
-            })}
+            <div className="tableWrapper">
+                <table>
+                    <tr>
+                        <th className="xitemName">Item</th>
+                        <th className="xitemBreakDown">Qty * Price</th>
+                        <th className="xitemPrice">Total</th>
+                    </tr>
+                    {productList.map((product: IProduct, idx: number) => {
+                        return (
+                            <tr className="bodyRow" key={idx}>
+                                <td>{product.name}</td>
+                                <td className="quantity">
+                                    {/*<input type="number" value={product.qty}*/}
+                                    {/*        onChange={(e => setState({...state, email: e.target.value}))}*/}
+                                    {/*/>*/}
+                                    {product.qty } * { (product.price).toFixed(2)}
+                                </td>
+                                <td>${(product.qty * product.price).toFixed(2)}</td>
+                            </tr>
+                        )
+                    })}
+                    { cartTotal > 0 &&
+                        <tr>
+                            <td/>
+                            <td style={{textAlign: "right"}}>Total: </td>
+                            <td  style={{paddingLeft: "20px"}}> ${cartTotal.toFixed(2)}</td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+            {/*{productList.map((product: IProduct, idx: number) => {*/}
+            {/*    return <div className="cartItem" key={idx}>*/}
+            {/*        <p className="itemName">{product.name}</p>*/}
+            {/*        <p className="itemBreakDown"> Qty: {product.qty} * Price: {product.price.toFixed(2)} </p>*/}
+            {/*        <p className="itemPrice"> Item Total: ${(product.price * product.qty).toFixed(2)}</p>*/}
+            {/*    </div>*/}
+            {/*})}*/}
 
             {cartTotal > 0 && <div className="total">
-                <p>Total: ${cartTotal.toFixed(2)}</p>
+                {/*<p>Total: ${cartTotal.toFixed(2)}</p>*/}
                 <button className="paymentButton" onClick={() => navigate("/payment")}>Proceed to Payment</button>
             </div>}
         </div>

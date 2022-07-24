@@ -14,10 +14,10 @@ const Product = (props: IProduct) => {
         getUserSetState(setUser)
     }, [selectStoreData]);
     
-    const addToCart = () => {
+    const addToCart = (productId: number) => {
       const cartFromStorage: number[] | null = getCartIdList();
-      if(cartFromStorage == null)  saveToLocalStorage(StorageKeys.CartKey, JSON.stringify([props.id]));
-      else saveToLocalStorage(StorageKeys.CartKey, JSON.stringify([...cartFromStorage, props.id]));
+      if(cartFromStorage == null)  saveToLocalStorage(StorageKeys.CartKey, JSON.stringify([productId]));
+      else saveToLocalStorage(StorageKeys.CartKey, JSON.stringify([...cartFromStorage, productId]));
       dispatch({type: TYPE.SetCartItem, payload: true})
     }
 
@@ -26,7 +26,7 @@ const Product = (props: IProduct) => {
             <p className="name">{props.name}</p>
             <img src={props.imageUrl} alt=""/>
             <p className="price">${props.price.toFixed(2)}</p>
-            {user && <button className="addToCart" onClick={addToCart}>Add to Cart</button>}
+            {user && <button className="addToCart" onClick={e => {addToCart(props.id)}}>Add to Cart</button>}
         </div>
     );
 };
